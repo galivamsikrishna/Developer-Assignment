@@ -1,0 +1,20 @@
+<template>
+    <div>
+        <h1>Related Child Accounts</h1>
+        <lightning-datatable
+            key-field="Id"
+            data={childAccounts}
+            columns={childAccountColumns}
+            hide-checkbox-column="true">
+        </lightning-datatable>
+    </div>
+    <div>
+        <h1>Related Contacts</h1>
+        <lightning-datatable
+            key-field="Id"
+            data={contacts}
+            columns={contactColumns}
+            hide-checkbox-column="true">
+        </lightning-datatable>
+    </div>
+</template>
