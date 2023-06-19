@@ -1,0 +1,19 @@
+trigger CreateChildAccount on Account (after insert, after update) {
+    List<Account> childAccounts = new List<Account>();
+    
+    for (Account parentAccount : Trigger.new) {
+        // Check if the parent Account has a Status field value of "Cold"
+        if (parentAccount.Status == 'Cold') {
+      // Create a new child Account with the necessary details
+            Account childAccount = new Account();
+            childAccount.Name = 'Child Account';        // Set the child Account name
+            childAccount.ParentId = parentAccount.Id;       // Set the ParentId to link it to the parent Account
+            childAccounts.add(childAccount);
+        }
+    }
+    
+    // Insert the child Accounts
+    if (!childAccounts.isEmpty()) {
+        insert childAccounts;
+    }
+}
